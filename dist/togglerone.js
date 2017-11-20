@@ -49,7 +49,7 @@ var Togglerone = function () {
 
       // Only add this event listener once, not for every instance.
       if (Togglerone.instances.length === 1) {
-        document.addEventListener('click', this.onDocumentClick);
+        document.addEventListener('click', Togglerone.onDocumentClick);
       }
     }
 
@@ -84,12 +84,6 @@ var Togglerone = function () {
       Togglerone.closeAllInstances(this);
       event.handledByTogglerone = true;
     }
-  }, {
-    key: 'onDocumentClick',
-    value: function onDocumentClick(event) {
-      if (event.handledByTogglerone === true) return;
-      Togglerone.closeAllInstances();
-    }
 
     /**
      * Remove classes for this instance.
@@ -114,10 +108,16 @@ var Togglerone = function () {
 
       // Only remove this event listener if there are no instances anymore.
       if (Togglerone.instances.length === 0) {
-        document.removeEventListener('click', this.onDocumentClick);
+        document.removeEventListener('click', Togglerone.onDocumentClick);
       }
     }
   }], [{
+    key: 'onDocumentClick',
+    value: function onDocumentClick(event) {
+      if (event.handledByTogglerone === true) return;
+      Togglerone.closeAllInstances();
+    }
+  }, {
     key: 'closeAllInstances',
     value: function closeAllInstances(originInstance) {
       if (Togglerone.instances === undefined) return;

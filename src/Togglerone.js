@@ -33,7 +33,7 @@ const Togglerone = class {
 
     // Only add this event listener once, not for every instance.
     if (Togglerone.instances.length === 1) {
-      document.addEventListener('click', this.onDocumentClick)
+      document.addEventListener('click', Togglerone.onDocumentClick)
     }
   }
 
@@ -63,11 +63,6 @@ const Togglerone = class {
     event.handledByTogglerone = true
   }
 
-  onDocumentClick (event) {
-    if (event.handledByTogglerone === true) return
-    Togglerone.closeAllInstances()
-  }
-
   /**
    * Remove classes for this instance.
    */
@@ -87,8 +82,13 @@ const Togglerone = class {
 
     // Only remove this event listener if there are no instances anymore.
     if (Togglerone.instances.length === 0) {
-      document.removeEventListener('click', this.onDocumentClick)
+      document.removeEventListener('click', Togglerone.onDocumentClick)
     }
+  }
+
+  static onDocumentClick (event) {
+    if (event.handledByTogglerone === true) return
+    Togglerone.closeAllInstances()
   }
 
   static closeAllInstances (originInstance) {
