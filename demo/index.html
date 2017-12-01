@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Togglerone</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<button class="btn is-active js-btn">Button I</button>
+<div class="el is-open js-el">Element I</div>
+<hr>
+<button class="btn js-btn2">Button II</button>
+<div class="el js-el2">Element II</div>
+<div class="js-nextTo" style="height: 42px"></div>
+
+<script src="togglerone.js"></script>
+<script>
+window.instance = new Togglerone(
+    document.querySelector('.js-el'),
+    document.querySelector('.js-btn')
+);
+window.instance2 = new Togglerone(
+    document.querySelector('.js-el2'),
+    document.querySelector('.js-btn2')
+);
+</script>
+</body>
+</html>

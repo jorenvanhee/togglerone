@@ -9,18 +9,28 @@
     "babel-core": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "chokidar": "^1.7.0",
+    "concurrently": "^3.5.0",
+    "cpx": "^1.5.0",
+    "cypress": "^1.1.2",
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-node": "^5.2.1",
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
+    "http-server": "^0.10.0",
     "rollup-plugin-babel": "^3.0.2",
     "rollup-plugin-eslint": "^4.0.0",
     "uglify-js": "^3.1.5"
   },
   "scripts": {
+    "test": "cypress run",
+    "test:gui": "cypress open",
+    "script:dev": "rollup -c -w",
+    "script:build": "rollup -c && npm run uglify",
     "uglify": "uglifyjs dist/togglerone.js -o dist/togglerone.min.js",
-    "dev": "rollup -c -w",
-    "build": "rollup -c && npm run uglify"
+    "demo:server": "http-server -c-1 ./demo/",
+    "demo:watch": "cpx ./dist/togglerone.js ./demo/ -w",
+    "dev": "concurrently --raw \"npm run script:dev\" \"npm run demo:watch\" \"npm run demo:server -- -s\"",
+    "build": "npm run script:build"
   }
 }
