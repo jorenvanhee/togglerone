@@ -26,10 +26,11 @@
     "test": "cypress run",
     "test:gui": "cypress open",
     "script:dev": "rollup -c -w",
-    "script:build": "rollup -c && npm run uglify",
+    "script:build": "rollup -c && npm run demo:copy && npm run uglify",
     "uglify": "uglifyjs dist/togglerone.js -o dist/togglerone.min.js",
     "demo:server": "http-server -c-1 ./demo/",
-    "demo:watch": "cpx ./dist/togglerone.js ./demo/ -w",
+    "demo:watch": "npm run demo:copy -- -w",
+    "demo:copy": "cpx ./dist/togglerone.js ./demo/",
     "dev": "concurrently --raw \"npm run script:dev\" \"npm run demo:watch\" \"npm run demo:server -- -s\"",
     "build": "npm run script:build"
   }
