@@ -25,7 +25,6 @@
   "scripts": {
     "test": "cypress run",
     "test:gui": "cypress open",
-    "pretest": "npm run demo:server -- --silent &",
     "script:dev": "rollup -c -w",
     "script:build": "rollup -c && npm run demo:copy && npm run uglify",
     "uglify": "uglifyjs dist/togglerone.js -o dist/togglerone.min.js",
