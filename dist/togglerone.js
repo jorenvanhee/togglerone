@@ -9,7 +9,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Togglerone = function () {
-  function Togglerone(element, toggler) {
+  function Togglerone(toggler, element) {
     var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
 
     _classCallCheck(this, Togglerone);
@@ -29,8 +29,8 @@ var Togglerone = function () {
     this.id = Togglerone.instances.length;
 
     // Store elements.
-    this.element = element;
     this.toggler = toggler;
+    this.element = element;
 
     // Store event listeners here, so that we can easily remove them later.
     this.eventListenerReferences = {};
@@ -41,11 +41,11 @@ var Togglerone = function () {
   _createClass(Togglerone, [{
     key: 'bindEventListeners',
     value: function bindEventListeners() {
-      this.eventListenerReferences.onElementClick = this.onElementClick.bind(this);
       this.eventListenerReferences.onTogglerClick = this.onTogglerClick.bind(this);
+      this.eventListenerReferences.onElementClick = this.onElementClick.bind(this);
 
-      this.element.addEventListener('click', this.eventListenerReferences.onElementClick);
       this.toggler.addEventListener('click', this.eventListenerReferences.onTogglerClick);
+      this.element.addEventListener('click', this.eventListenerReferences.onElementClick);
 
       // Only add this event listener once, not for every instance.
       if (Togglerone.instances.length === 1) {
@@ -60,8 +60,8 @@ var Togglerone = function () {
   }, {
     key: 'onTogglerClick',
     value: function onTogglerClick(event) {
-      this.element.classList.toggle(this.options.elementClass);
       this.toggler.classList.toggle(this.options.togglerClass);
+      this.element.classList.toggle(this.options.elementClass);
 
       Togglerone.closeAllInstances(this);
 
@@ -92,8 +92,8 @@ var Togglerone = function () {
   }, {
     key: 'close',
     value: function close() {
-      this.element.classList.remove(this.options.elementClass);
       this.toggler.classList.remove(this.options.togglerClass);
+      this.element.classList.remove(this.options.elementClass);
     }
   }, {
     key: 'destroy',
@@ -103,8 +103,8 @@ var Togglerone = function () {
       Togglerone.instances.splice(key, 1);
 
       // Remove event listeners.
-      this.element.removeEventListener('click', this.eventListenerReferences.onElementClick);
       this.toggler.removeEventListener('click', this.eventListenerReferences.onTogglerClick);
+      this.element.removeEventListener('click', this.eventListenerReferences.onElementClick);
 
       // Only remove this event listener if there are no instances anymore.
       if (Togglerone.instances.length === 0) {
