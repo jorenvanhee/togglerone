@@ -9,4 +9,3 @@ Toggles one or more classes on an element by clicking on a button (and more).
 
 - Add or remove one or more classes on an element by clicking on a button
 - Remove classes when clicking outside of the element
-- Can be nested
