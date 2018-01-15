@@ -20,3 +20,24 @@ npm install togglerone --save-dev
 ```
 yarn add togglerone
 ```
+
+## Usage
+
+### Javascript
+
+```js
+var button = document.querySelector('.button')
+var element = document.querySelector('.element')
+
+var instance = new Togglerone(button, element, {
+  'elementClass': 'is-open'
+  // ...
+})
+```
+
+### Data attributes
+
+```html
+<button data-togglerone="..."></button>
+<div class="element"></div>
+```
